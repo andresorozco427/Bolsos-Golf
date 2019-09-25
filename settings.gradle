@@ -1,0 +1,5 @@
+rootProject.name = 'bolsos-golf'
+
+include ':aplicacion', 
+		':dominio', 
+		':infraestructura'
