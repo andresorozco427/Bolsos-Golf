@@ -16,7 +16,7 @@ pipeline {
                         extensions: [],
                         gitTool:'Git_Centos',
                         submoduleCfg: [],
-                        userRemoteConfigs: [[url:'https://github.com/fercho2000/PARQUEAERO-CEIBA']]])
+                        userRemoteConfigs: [[url:'https://github.com/andresorozco427/Bolsos-Golf']]])
            }  
        }
        stage('Unit Tests') {
@@ -30,13 +30,6 @@ pipeline {
        stage('Integration Tests') {
            steps {
                echo "------------>Integration Tests<------------"
-           }
-       }
-       stage('Static Code Analysis') {
-           steps{
-               echo '------------>AnÃƒÂ¡lisis de cÃƒÂ³digo estÃƒÂ¡tico<------------'
-               withSonarQubeEnv('Sonar') {
-                   sh "${tool name: 'SonarScanner',type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"}
            }
        }
    
