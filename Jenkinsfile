@@ -1,19 +1,9 @@
 pipeline {
-   //Donde se va a ejecutar el Pipeline
-   agent {
-       label 'Slave_Induccion'
-   }
+   agent any
    
-   //Opciones especÃƒÂ­ficas de Pipeline dentro del Pipeline
    options {
-       //Mantener artefactos y salida de consola para el # especÃƒÂ­fico de ejecucionesrecientes del Pipeline.
        buildDiscarder(logRotator(numToKeepStr: '3'))
        disableConcurrentBuilds()
-   }
-   
-   tools {
-       jdk 'JDK8_Centos'
-       gradle 'Gradle4.5_Centos'
    }
    
     stages{
