@@ -8,20 +8,15 @@ pipeline {
    options {
        //Mantener artefactos y salida de consola para el # especÃƒÂ­fico de ejecucionesrecientes del Pipeline.
        buildDiscarder(logRotator(numToKeepStr: '3'))
-       //No permitir ejecuciones concurrentes de Pipeline
        disableConcurrentBuilds()
    }
    
-   //Una secciÃƒÂ³n que define las herramientas para Ã¢â‚¬Å“autoinstalarÃ¢â‚¬ï¿½ y poner en la PATH
    tools {
        jdk 'JDK8_Centos'
-       //Preinstalada en la ConfiguraciÃƒÂ³n del Master
        gradle 'Gradle4.5_Centos'
-       //Preinstalada en la ConfiguraciÃƒÂ³n del Master
    }
    
-   //AquÃƒÂ­ comienzan los Ã¢â‚¬Å“itemsÃ¢â‚¬ï¿½ del Pipeline
-   stages{
+    stages{
        stage('Checkout') {
            steps{ 
                echo "------------>Checkout<------------"
@@ -31,8 +26,7 @@ pipeline {
                         extensions: [],
                         gitTool:'Git_Centos',
                         submoduleCfg: [],
-                        userRemoteConfigs: [[credentialsId:'Github_fercho2000',
-                        url:'https://github.com/fercho2000/PARQUEAERO-CEIBA']]])
+                        userRemoteConfigs: [[url:'https://github.com/fercho2000/PARQUEAERO-CEIBA']]])
            }  
        }
        stage('Unit Tests') {
@@ -76,7 +70,7 @@ pipeline {
 	         }
 		         failure {
 	 		echo 'This will run only if failed' 
-	 		mail (to: 'jose.usuga@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
+	 		mail (to: 'andres.orozco@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
 	 		body: "Something is wrongwith ${env.BUILD_URL}")
 	 		}
 		 }
